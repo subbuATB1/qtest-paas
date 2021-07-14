@@ -1,0 +1,52 @@
+# Setup your replica count!
+replicaCount:
+  ui: 1
+  api: 1
+  notification: 1
+  poller: 1
+
+# Where are your images?
+image:
+  repository: localhost:5000/qtestmgr
+  liquibase: localhost:5000/liquibase
+  pullPolicy: IfNotPresent
+  tag: latest
+  liquibasetag: latest
+
+# Setup Ingress with TLS
+secrets:
+  enabled: true
+
+# Your desktop doesn't have an LB
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hosts:
+  - nephele.qtest.local
+  - qtestdev1.qtest.local
+  tls:
+  - secretName: qtest-tls-secret
+    hosts:
+    - nephele.qtest.local
+  annotations: null
+
+# qTest Manager
+qTestManager:
+  client:
+    jdbc:
+      postgresUrl: jdbc:postgresql://host.docker.internal/qTest
+      postgresUserName: postgres
+      postgresPassword: cG9zdGdyZXM=
+      postgresReadOnlyUrl: jdbc:postgresql://host.docker.internal/qTest
+      postgresReadOnlyUserName: postgres
+      postgresReadOnlyPassword: cG9zdGdyZXM=
+  notification:
+    urlExternal: https://nephele.qtest.local
+  preUrl: http://<sitename>.qtest.local
+  preUrlHttps: https://<sitename>.qtest.local
+
+# Turn off persistence
+persistence:
+  enabled: false
