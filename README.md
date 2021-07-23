@@ -20,7 +20,7 @@ This is a quickstart to deploy qTest on your local dev K8s multi-node cluster.
 ## Build qTest and Liquibase
 Please refer to qTest build instructions; but, in a nutshell:
 
-<code>mvn clean install -DskipTests</code><p>
+<code>mvn clean install -DskipTests -Pminify-js</code><p>
 <code>docker build . -f ./docker/qtest/Dockerfile -t localhost:5000/qtestmgr && docker push localhost:5000/qtestmgr</code><p>
 <code>docker build . -f ./docker/liquibase/Dockerfile -t localhost:5000/liquibase && docker push localhost:5000/liquibase</code>
 

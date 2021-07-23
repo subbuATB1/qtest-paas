@@ -59,7 +59,7 @@ data:
 EOF
 
 # Install DNSUtil (optional)
-kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
+# kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
 
 # Install metrics (optional)
 echo "Installing metrics..."

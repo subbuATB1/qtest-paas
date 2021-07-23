@@ -2,8 +2,8 @@
 replicaCount:
   ui: 1
   api: 1
-  notification: 1
-  poller: 1
+  notification: 0
+  poller: 0
 
 # Where are your images?
 image:
