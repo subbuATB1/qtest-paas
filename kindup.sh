@@ -67,7 +67,7 @@ kubectl apply -f ./metrics.yaml
 
 # Create Ingress TLS cert
 echo "Installing self-signed cert..."
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.cert -subj "/CN=nephele.qtest.local/O=nephele.qtest.local"
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.cert -subj "/CN=nephele.qtest.local/O=nephele.qtest.local" -addext "subjectAltName = DNS:nephele.qtest.local"
 kubectl create secret tls qtest-tls-secret --key tls.key --cert tls.cert
 rm -f tls.*
 
