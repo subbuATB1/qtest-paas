@@ -21,6 +21,10 @@ This is a quickstart to deploy qTest on your local dev K8s multi-node cluster.
 Please refer to qTest build instructions; but, in a nutshell:
 
 <code>mvn clean install -DskipTests -Pminify-js</code><p>
+
+Note for <b>Windows</b> users:  If you run out of heap space, you can build without the -Pminify-js profile.  Please add the following in your <code>src/main/resources/configuration/common/override.properties</code> file (don't check this in!) and rebuild without the -Pminify-js flag:
+<pre>testconductor.isnotminify=true</pre>
+
 <code>docker build . -f ./docker/qtest/Dockerfile -t localhost:5000/qtestmgr && docker push localhost:5000/qtestmgr</code><p>
 <code>docker build . -f ./docker/liquibase/Dockerfile -t localhost:5000/liquibase && docker push localhost:5000/liquibase</code>
 
