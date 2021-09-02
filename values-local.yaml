@@ -1,9 +1,10 @@
 # Setup your replica count!
-replicaCount:
-  ui: 1
-  api: 1
-  notification: 0
-  poller: 0
+autoscaling:
+  minReplicas:
+    ui: 1
+    api: 1
+    notification: 0
+    poller: 0
 
 # Where are your images?
 image:
