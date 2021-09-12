@@ -67,8 +67,10 @@ kubectl apply -f ./metrics.yaml
 
 # Install NginX Ingress Controller
 echo "Installing NginX Ingress Controller..."
-VERSION=$(curl -s https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/stable.txt)
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${VERSION}/deploy/static/provider/kind/deploy.yaml
+#VERSION=$(curl -s https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/stable.txt)
+#kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${VERSION}/deploy/static/provider/kind/deploy.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
   --selector=app.kubernetes.io/component=controller \
