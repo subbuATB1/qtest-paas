@@ -52,3 +52,23 @@ Note for <b>Windows</b> users:  If you have an error starting the qTest containe
 127.0.0.1       qtest.local
 127.0.0.1       notification.qtest.local
 </pre>
+
+## Guide to run qTest Manager in onPremise mode
+<pre>
+testconductor:
+  environment:
+    isOnPremise: true
+
+  # Under qTestManager
+  attachmentFolderPath: /mnt/data/qtest/attachments
+  licenseFolderPath: /mnt/data/qtest/license
+</pre>
+
+* Once the server is up and running, copy the server id from the Administrator -> license
+* Generate the license with the server id and place it in qtest-pass directory
+* copy the license to /mnt directory to kind nodes
+    - docker cp license.lic kind-worker:/mnt
+    - docker cp license.lic kind-worker2:/mnt
+* Login to kind worker and create directory /mnt/data/qtest/attachments and /mnt/data/qtest/license
+* Move the license from /mnt directory to /mnt/data/qtest/license
+</pre>
