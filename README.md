@@ -30,7 +30,7 @@ Note for <b>Windows</b> users:  If you run out of heap space, you can build with
 
 Note for <b>Windows</b> users:  If you have an error starting the qTest container in Windows, chances are you might have the Windows EOL characters in your entry script.  To remove them:
 
-<code>dos2unix.exe $QTEST_HOME/docker/qtest/entry.sh</code>
+<code>dos2unix.exe $QTEST_HOME/docker/qtest/entrypoint.sh</code>
 
 ## Deploy qTest via local Helm
 <code>export QCHART="location of your qtest_chart Helm repo"</code><p>
