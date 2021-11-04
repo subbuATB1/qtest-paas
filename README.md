@@ -2,7 +2,7 @@
 
 This is a quickstart to deploy qTest on your local dev K8s multi-node cluster.
 
-## Prerequisites
+## Prerequisites 
 
 * PostgreSQL (local)
 * Docker Desktop
