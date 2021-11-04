@@ -38,16 +38,43 @@ secrets:
 service:
   type: ClusterIP
 
+### Ingress/IngressClass (> K8s 1.18-1.22+) #####
+ingressClass:
+  enabled: true
+  labels: {}
+  controller: k8s.io/ingress-nginx
+  isDefaultClass: true
+  # Use to force a networking.k8s.io API Version for certain CI/CD applications. Ex. "v1"
+  fallbackApiVersion: ""
+
 ingress:
   enabled: true
+  name: qtest-insights-ingress
+  labels: {}
+  annotations: {}
+  canary:
+    annotationPrefix: ""
+    annotations: 
+     ingress.kubernetes.io/rewrite-target: /
+      # canary-by-header: []
+      # canary-by-header-pattern: []
   hosts:
-  - nephele.qtest.local
-  - qtestdev1.qtest.local
+     - nephele.qtest.local
+     - qtestdev1.qtest.local
+
+  paths: []
+
+  extraPaths:
+    - path: /*
+      pathType: ImplementationSpecific
+secrets:
+  enabled: true
   tls:
-  - secretName: qtest-tls-secret
-    hosts:
-    - nephele.qtest.local
-  annotations: null
+    []
+    # - secretName: qtest-svc-tls
+    #   hosts:
+    #     - svc.qtest.com
+  https: false
 
 # qTest Manager
 qTestManager:
@@ -73,3 +100,22 @@ persistence:
 testconductor:
   environment:
     isOnPremise: true
+secrets:
+  enabled: true
+# HPA values
+autoscaling:
+  enabled: true
+  minReplicas:
+    ui: 1
+    api: 1
+    notification: 1
+    poller: 1
+    default: 1
+  maxReplicas:
+    ui: 3
+    api: 3
+    notification: 3
+    poller: 1
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 70
+  healthApiPath: /health-checker
